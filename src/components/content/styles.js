@@ -6,6 +6,7 @@ const StyledContent = styled.div`
 	justify-content: center;
 	align-items: center;
 	padding: 2rem 5rem;
+	background-color: #fafafa;
 `;
 const StyledFiltersContainer = styled.div`
 	width: 100%;
@@ -17,7 +18,7 @@ const StyledFiltersContainer = styled.div`
 const StyledFlagsContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	gap: 1rem;
+	gap: 4.66rem;
 `;
 
 export { StyledContent, StyledFiltersContainer, StyledFlagsContainer };
