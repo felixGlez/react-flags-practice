@@ -1,28 +1,36 @@
 import { useEffect, useState } from 'react';
 import {
 	StyledContent,
-	StyledFiltersContainer,
-	StyledFlagsContainer
+	StyledCountriesContainer,
+	StyledFiltersContainer
 } from './styles';
 import CardCountry from '../card-country/CardCountry';
 
 const Content = () => {
 	const [region, setRegion] = useState(0);
-	const [flags, setFlags] = useState([]);
-	console.log(region);
+	const [searchBy, setSearchBy] = useState('');
+	const [countries, setCountries] = useState([]);
+
+	let filteredCountries = filterByRegion(region, countries);
+	filteredCountries = searchByName(searchBy, filteredCountries);
 
 	useEffect(() => {
-		fetchCountries(setFlags, region);
-	}, [region]);
+		fetchCountries(setCountries);
+	}, []);
 
 	return (
 		<StyledContent>
 			<StyledFiltersContainer>
-				<input type='text' name='search' id='search' />
+				<input
+					type='text'
+					name='search'
+					id='search'
+					onChange={event => setSearchBy(event.target.value)}
+				/>
 				<select
 					name='select'
 					id='select'
-					onChange={event => filterByRegion(event, setRegion)}
+					onChange={event => setRegion(Number(event.target.value))}
 				>
 					<option value='0'>All</option>
 					<option value='1'>Africa</option>
@@ -32,43 +40,48 @@ const Content = () => {
 					<option value='5'>Oceania</option>
 				</select>
 			</StyledFiltersContainer>
-			<StyledFlagsContainer>
-				<CardCountry flags={flags} />
-			</StyledFlagsContainer>
+			<StyledCountriesContainer>
+				<CardCountry filteredCountries={filteredCountries} />
+			</StyledCountriesContainer>
 		</StyledContent>
 	);
 };
 
-const fetchCountries = async (setFlags, region) => {
+const fetchCountries = async setCountries => {
 	const response = await fetch(`https://restcountries.com/v3.1/all`);
 	const data = await response.json();
+	setCountries(data);
+};
 
-	const allCountries = [...data];
+const filterByRegion = (region, countries) => {
+	const allCountries = [...countries];
+
 	switch (region) {
 		case 0:
-			setFlags(allCountries);
-			break;
+			return allCountries;
 		case 1:
-			setFlags(allCountries.filter(country => country.region === 'Africa'));
-			break;
+			return allCountries.filter(country => country.region === 'Africa');
 		case 2:
-			setFlags(allCountries.filter(country => country.region === 'Americas'));
-			break;
+			return allCountries.filter(country => country.region === 'Americas');
 		case 3:
-			setFlags(allCountries.filter(country => country.region === 'Asia'));
-			break;
+			return allCountries.filter(country => country.region === 'Asia');
 		case 4:
-			setFlags(allCountries.filter(country => country.region === 'Europe'));
-			break;
+			return allCountries.filter(country => country.region === 'Europe');
 		case 5:
-			setFlags(allCountries.filter(country => country.region === 'Oceania'));
-			break;
+			return allCountries.filter(country => country.region === 'Oceania');
 	}
 };
 
-const filterByRegion = (event, setRegion) => {
-	const { value } = event.target;
-	setRegion(Number(value));
+const searchByName = (searchBy, countries) => {
+	const searchTerm = searchBy.toLowerCase();
+
+	if (searchTerm) {
+		const filteredCountries = countries.filter(country =>
+			country.name.common.toLowerCase().includes(searchTerm)
+		);
+		return filteredCountries;
+	}
+	return [...countries];
 };
 
 export default Content;

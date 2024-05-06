@@ -1,4 +1,3 @@
-import { v4 } from 'uuid';
 import {
 	StyledCardCountry,
 	StyledCountryData,
@@ -6,11 +5,11 @@ import {
 	StyledCountryName
 } from './styles';
 
-const CardCountry = ({ flags }) => {
+const CardCountry = ({ filteredCountries }) => {
 	return (
 		<>
-			{flags.map(country => (
-				<StyledCardCountry key={v4()}>
+			{filteredCountries.map(country => (
+				<StyledCardCountry key={country.flag}>
 					<StyledCountryFlag src={country.flags.svg} />
 					<StyledCountryName>{country.name.common}</StyledCountryName>
 					<StyledCountryData>

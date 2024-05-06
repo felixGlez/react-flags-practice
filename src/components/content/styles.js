@@ -15,10 +15,10 @@ const StyledFiltersContainer = styled.div`
 	align-items: center;
 `;
 
-const StyledFlagsContainer = styled.div`
+const StyledCountriesContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	gap: 4.66rem;
 `;
 
-export { StyledContent, StyledFiltersContainer, StyledFlagsContainer };
+export { StyledContent, StyledFiltersContainer, StyledCountriesContainer };
