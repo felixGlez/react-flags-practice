@@ -1,7 +1,6 @@
-import Content from './components/content/Content';
-import Header from './components/header/Header';
-import Main from './components/main/Main';
+import { BrowserRouter } from 'react-router-dom';
 import { GlobalStyles } from './styles/global-styles';
+import Router from './router/Router';
 
 // https://restcountries.com/v3.1/name/{name}
 // const country = [
@@ -94,13 +93,10 @@ import { GlobalStyles } from './styles/global-styles';
 
 const App = () => {
 	return (
-		<>
+		<BrowserRouter>
 			<GlobalStyles />
-			<Main>
-				<Header />
-				<Content />
-			</Main>
-		</>
+			<Router />
+		</BrowserRouter>
 	);
 };
 

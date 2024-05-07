@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
-import {
-	StyledContent,
-	StyledCountriesContainer,
-	StyledFiltersContainer
-} from './styles';
-import CardCountry from '../card-country/CardCountry';
+import { StyledContent } from './styles';
+import Filters from '../filters/Filters';
+import Countries from '../countries/Countries';
 
 const Content = () => {
 	const [region, setRegion] = useState(0);
@@ -20,29 +17,8 @@ const Content = () => {
 
 	return (
 		<StyledContent>
-			<StyledFiltersContainer>
-				<input
-					type='text'
-					name='search'
-					id='search'
-					onChange={event => setSearchBy(event.target.value)}
-				/>
-				<select
-					name='select'
-					id='select'
-					onChange={event => setRegion(Number(event.target.value))}
-				>
-					<option value='0'>All</option>
-					<option value='1'>Africa</option>
-					<option value='2'>America</option>
-					<option value='3'>Asia</option>
-					<option value='4'>Europe</option>
-					<option value='5'>Oceania</option>
-				</select>
-			</StyledFiltersContainer>
-			<StyledCountriesContainer>
-				<CardCountry filteredCountries={filteredCountries} />
-			</StyledCountriesContainer>
+			<Filters setSearchBy={setSearchBy} setRegion={setRegion} />
+			<Countries filteredCountries={filteredCountries} />
 		</StyledContent>
 	);
 };
@@ -54,21 +30,19 @@ const fetchCountries = async setCountries => {
 };
 
 const filterByRegion = (region, countries) => {
-	const allCountries = [...countries];
-
 	switch (region) {
 		case 0:
-			return allCountries;
+			return [...countries];
 		case 1:
-			return allCountries.filter(country => country.region === 'Africa');
+			return countries.filter(country => country.region === 'Africa');
 		case 2:
-			return allCountries.filter(country => country.region === 'Americas');
+			return countries.filter(country => country.region === 'Americas');
 		case 3:
-			return allCountries.filter(country => country.region === 'Asia');
+			return countries.filter(country => country.region === 'Asia');
 		case 4:
-			return allCountries.filter(country => country.region === 'Europe');
+			return countries.filter(country => country.region === 'Europe');
 		case 5:
-			return allCountries.filter(country => country.region === 'Oceania');
+			return countries.filter(country => country.region === 'Oceania');
 	}
 };
 

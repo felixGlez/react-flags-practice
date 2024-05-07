@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 const StyledContent = styled.div`
+	width: 100%;
+	max-width: 1440px;
+	margin-inline: auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -8,17 +11,5 @@ const StyledContent = styled.div`
 	padding: 2rem 5rem;
 	background-color: #fafafa;
 `;
-const StyledFiltersContainer = styled.div`
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-`;
 
-const StyledCountriesContainer = styled.div`
-	display: flex;
-	flex-wrap: wrap;
-	gap: 4.66rem;
-`;
-
-export { StyledContent, StyledFiltersContainer, StyledCountriesContainer };
+export { StyledContent };

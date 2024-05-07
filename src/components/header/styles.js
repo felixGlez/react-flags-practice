@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 const StyledHeader = styled.header`
 	width: 100%;
+	max-width: 1440px;
+	margin-inline: auto;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
