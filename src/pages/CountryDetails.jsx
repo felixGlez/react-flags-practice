@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
 	StyledBackButton,
 	StyledBorderCountry,
@@ -12,9 +12,11 @@ import {
 
 const CountryDetails = () => {
 	const { state: country } = useLocation();
+	const navigate = useNavigate();
+
 	return (
 		<StyledCountryDetails>
-			<StyledBackButton to={'/'}>
+			<StyledBackButton onClick={() => navigate('/')}>
 				<img src='/shape.png' />
 				Back
 			</StyledBackButton>

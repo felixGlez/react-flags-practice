@@ -10,6 +10,7 @@ const StyledContent = styled.div`
 	align-items: center;
 	padding: 2rem 5rem;
 	background-color: #fafafa;
+	gap: 2rem;
 `;
 
 export { StyledContent };

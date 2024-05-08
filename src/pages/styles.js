@@ -1,24 +1,29 @@
-import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledCountryDetails = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
 	padding: 2rem 5rem;
+	gap: 1rem;
 
 	@media (max-width: 769px) {
 		padding: 0rem;
 	}
 `;
 
-const StyledBackButton = styled(NavLink)`
+const StyledBackButton = styled.button`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 8.5rem;
-	box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.0294);
+	padding: 0.5rem 1rem;
+	width: auto;
+	box-shadow: 0px 0px 7px 2px rgb(0 0 0 / 10%);
+	background-color: white;
+	border: none;
+	border-radius: 1rem;
+	cursor: pointer;
 `;
 
 const StyledInfoContainer = styled.div`
